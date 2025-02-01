@@ -102,7 +102,7 @@ function GetStarted() {
     if (step == 4) {
       routeNext();
     }
-  }, [Records, step]);
+  }, [Records, step, routeNext]);
 
   async function validateUserName(value: string) {
     if (value === "") {
