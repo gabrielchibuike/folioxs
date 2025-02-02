@@ -44,7 +44,9 @@ function Login() {
       setIsLoading(false);
       disabledBtn.current!.disabled = false;
 
-      localStorage.setItem("AccessToken", result);
+      if (typeof window !== "undefined") {
+        localStorage.setItem("AccessToken", result);
+      }
       setTimeout(() => {
         window.location.href = "/dashboard";
       }, 1000);
