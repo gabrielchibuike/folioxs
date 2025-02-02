@@ -6,7 +6,8 @@ interface newJwtPayLoad extends JwtPayload {
 }
 
 const token =
-  typeof window !== "undefined" && localStorage.getItem("AccessToken");
+  (typeof window !== "undefined" && localStorage.getItem("AccessToken")) ||
+  "token";
 console.log(token);
 
 if (!token) {

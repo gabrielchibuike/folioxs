@@ -36,7 +36,7 @@ function LinkInputModel({ ele }: { ele: any }) {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      setToken(localStorage.getItem("AccessToken"));
+      setToken(localStorage.getItem("AccessToken") || "token");
     }
   }, []);
 
