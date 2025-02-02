@@ -32,7 +32,8 @@ const Otp = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-auth-token": localStorage.getItem("AccessToken") || "",
+        "x-auth-token":
+          (localStorage && localStorage.getItem("AccessToken")) || "",
       },
       body: JSON.stringify({ otp_code: otpCode }),
     });

@@ -178,7 +178,7 @@ function GetStarted() {
       const result = await request.text();
       console.log(result);
 
-      if (typeof window !== "undefined") {
+      if (typeof window !== "undefined" || localStorage) {
         localStorage.setItem("AccessToken", result);
       }
       route.push("/auth/otp");

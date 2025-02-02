@@ -16,7 +16,8 @@ function ReuseableTemplate() {
     try {
       const templates = await fetch(`${domain}/api/get_all_template`, {
         headers: {
-          "x-auth-token": localStorage.getItem("AccessToken") as string,
+          "x-auth-token":
+            localStorage && (localStorage.getItem("AccessToken") as string),
         },
       });
 

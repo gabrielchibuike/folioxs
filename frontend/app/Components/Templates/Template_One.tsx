@@ -33,7 +33,8 @@ function Template_One() {
     const result = await fetch(`${domain}/api/user_template/${decoded.id}`, {
       headers: {
         "Content-Type": "application/json",
-        "x-auth-token": localStorage.getItem("AccessToken") as string,
+        "x-auth-token":
+          localStorage && (localStorage.getItem("AccessToken") as string),
       },
     });
     try {

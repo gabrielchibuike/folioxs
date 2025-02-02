@@ -106,7 +106,8 @@ function PopUp() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "x-auth-token": localStorage.getItem("AccessToken") as string,
+          "x-auth-token":
+            localStorage && (localStorage.getItem("AccessToken") as string),
         },
         body: JSON.stringify(ele),
       };

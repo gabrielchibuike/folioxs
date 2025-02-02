@@ -5,7 +5,7 @@ interface newJwtPayLoad extends JwtPayload {
   email: string;
 }
 
-const token = localStorage.getItem("AccessToken");
+const token = localStorage && localStorage.getItem("AccessToken");
 console.log(token);
 
 if (!token) {

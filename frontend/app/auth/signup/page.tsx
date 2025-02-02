@@ -40,7 +40,7 @@ function Signup() {
       setIsLoading(false);
       disabledBtn.current!.disabled = false;
       const result = await request.text();
-      if (typeof window !== "undefined") {
+      if (typeof window !== "undefined" || localStorage) {
         localStorage.setItem("AccessToken", result);
       }
       route.push("/auth/getStarted");

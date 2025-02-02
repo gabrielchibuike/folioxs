@@ -44,7 +44,7 @@ function Login() {
       setIsLoading(false);
       disabledBtn.current!.disabled = false;
 
-      if (typeof window !== "undefined") {
+      if (typeof window !== "undefined" || localStorage) {
         localStorage.setItem("AccessToken", result);
       }
       setTimeout(() => {

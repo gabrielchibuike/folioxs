@@ -47,7 +47,8 @@ function LinkInputModel({ ele }: { ele: any }) {
     const option = {
       method: "POST",
       headers: {
-        "x-auth-token": localStorage.getItem("AccessToken") as string,
+        "x-auth-token":
+          localStorage && (localStorage.getItem("AccessToken") as string),
       },
       body: formData,
     };
