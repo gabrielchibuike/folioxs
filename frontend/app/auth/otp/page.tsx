@@ -9,17 +9,20 @@ import { domain } from "@/app/config/domain";
 function Otp() {
   const [IsDisplaySuccessBox, setIsDisplaySuccessBox] = useState(false);
   let otpcode = "";
-  let inputs: any[] = [];
-  for (let i = 0; i < 5; i++) {
-    inputs[i] = useRef(null);
-  }
+  // let inputs: any[] = [];
+  // for (let i = 0; i < 5; i++) {
+  //   inputs[i] = useRef(null);
+  // }
+  const [inputs] = useState(() =>
+    Array.from({ length: 5 }, () => useRef<HTMLInputElement>(null))
+  );
 
   function handleInput(index: number) {
     if (index == inputs.length - 1) {
-      inputs[index].current.disabled = "true";
+      inputs[index].current!.disabled = true;
     } else {
       inputs[index + 1].current?.focus();
-      inputs[index].current.disabled = "true";
+      inputs[index].current!.disabled = true;
     }
     return new Promise((resovle) => {
       resovle((otpcode += inputs[index].current?.value));

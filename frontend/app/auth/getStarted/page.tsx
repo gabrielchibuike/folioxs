@@ -1,5 +1,5 @@
 "use client";
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
 import { InputsTypes, socialHandleType } from "@/app/interface";
@@ -98,12 +98,6 @@ function GetStarted() {
     }
   }
 
-  useEffect(() => {
-    if (step == 4) {
-      routeNext();
-    }
-  }, [Records, step, routeNext]);
-
   async function validateUserName(value: string) {
     if (value === "") {
       return setErr("This field cannot be empty");
@@ -144,15 +138,40 @@ function GetStarted() {
     }
   }
 
-  async function routeNext() {
+  // async function routeNext() {
+  //   console.log(Records);
+  //   const formData = new FormData();
+  //   formData.append("file", selectedFile);
+  //   formData.append("jsonData", JSON.stringify(Records));
+  //   const option = {
+  //     method: "POST",
+  //     body: formData,
+  //   };
+  //   const request = await fetch(`${domain}/api/access/get_started`, option);
+
+  //   if (request.ok) {
+  //     const result = await request.text();
+  //     console.log(result);
+
+  //     localStorage.setItem("AccessToken", result);
+  //     route.push("/auth/otp");
+  //   } else {
+  //     const result = await request.text();
+  //     console.log(result);
+  //   }
+  // }
+
+  const routeNext = useCallback(async () => {
     console.log(Records);
     const formData = new FormData();
     formData.append("file", selectedFile);
     formData.append("jsonData", JSON.stringify(Records));
+
     const option = {
       method: "POST",
       body: formData,
     };
+
     const request = await fetch(`${domain}/api/access/get_started`, option);
 
     if (request.ok) {
@@ -165,7 +184,13 @@ function GetStarted() {
       const result = await request.text();
       console.log(result);
     }
-  }
+  }, [Records, selectedFile, domain, route]);
+
+  useEffect(() => {
+    if (step == 4) {
+      routeNext();
+    }
+  }, [step, routeNext]);
 
   return (
     <>
