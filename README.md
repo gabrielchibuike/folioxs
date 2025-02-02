@@ -40,8 +40,7 @@ pnpm dev
 # or
 bun dev
 ```
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file
-## Learn More
+
 
 To learn more about Next.js, take a look at the following resources:
 
