@@ -5,11 +5,12 @@ interface newJwtPayLoad extends JwtPayload {
   email: string;
 }
 
-const token = localStorage && localStorage.getItem("AccessToken");
+const token =
+  typeof window !== "undefined" && localStorage.getItem("AccessToken");
 console.log(token);
 
 if (!token) {
   window.location.href = "/auth/login";
 }
 
-export const decoded: newJwtPayLoad = jwtDecode(token!);
+export const decoded: newJwtPayLoad = jwtDecode(token as string);

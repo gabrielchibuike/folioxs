@@ -32,6 +32,14 @@ function LinkInputModel({ ele }: { ele: any }) {
 
   const [msg, setMsg] = useState("");
 
+  const [token, setToken] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setToken(localStorage.getItem("AccessToken"));
+    }
+  }, []);
+
   async function handleSubmit() {
     const data = {
       email: decoded.email,
@@ -47,8 +55,7 @@ function LinkInputModel({ ele }: { ele: any }) {
     const option = {
       method: "POST",
       headers: {
-        "x-auth-token":
-          localStorage && (localStorage.getItem("AccessToken") as string),
+        "x-auth-token": token as string,
       },
       body: formData,
     };
