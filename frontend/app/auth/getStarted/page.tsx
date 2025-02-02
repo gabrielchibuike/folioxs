@@ -184,7 +184,7 @@ function GetStarted() {
       const result = await request.text();
       console.log(result);
     }
-  }, [Records, selectedFile, domain, route]);
+  }, [Records, selectedFile, route]);
 
   useEffect(() => {
     if (step == 4) {
