@@ -10,7 +10,7 @@ const token =
 console.log(token);
 
 if (!token) {
-  window.location.href = "/auth/login";
+  if (typeof window !== "undefined") window.location.href = "/auth/login";
 }
 
 export const decoded: newJwtPayLoad = jwtDecode(token as string);

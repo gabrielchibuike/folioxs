@@ -48,7 +48,7 @@ function Login() {
         localStorage.setItem("AccessToken", result);
       }
       setTimeout(() => {
-        window.location.href = "/dashboard";
+        if (typeof window !== "undefined") window.location.href = "/dashboard";
       }, 1000);
     } else {
       const result = await request.text();
