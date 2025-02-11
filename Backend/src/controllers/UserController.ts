@@ -134,7 +134,7 @@ export async function login_user_controller(req: Request, res: Response) {
       { id: user?._id, email: email },
       ACCESS_TOKEN as string,
       {
-        expiresIn: "15m",
+        expiresIn: "20m",
       }
     );
 
