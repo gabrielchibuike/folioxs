@@ -12,7 +12,7 @@ function DeletePopUpModel() {
   async function handleDelete() {
     const data = {
       linkId: linkId,
-      email: decoded.email,
+      // email: decoded.email,
     };
 
     const option = {

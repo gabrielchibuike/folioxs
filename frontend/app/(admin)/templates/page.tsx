@@ -2,11 +2,7 @@
 import ButtonNav from "@/app/Components/ButtonNav";
 import ReuseableTemplate from "@/app/Components/ReuseableTemplate";
 import SideNav from "@/app/Components/SideNav";
-import { domain } from "@/app/config/domain";
-import { decoded } from "@/app/lib/getDecodedToken";
-import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
 import { CiSettings } from "react-icons/ci";
 import { FaHandsHelping } from "react-icons/fa";
 

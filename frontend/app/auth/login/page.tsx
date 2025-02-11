@@ -4,13 +4,15 @@ import CustomInput from "@/app/Components/CustomInput";
 import { loginSchema } from "@/app/validation";
 import { useFormik } from "formik";
 import Link from "next/link";
-import React, { ChangeEvent, useRef, useState } from "react";
+import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import { BiLoaderAlt } from "react-icons/bi";
 import { FaHandsHelping } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { domain } from "@/app/config/domain";
+import { useMyContext } from "@/app/Redux/Store";
 
 function Login() {
+  const { setUniqueDetails } = useMyContext();
   const [isLoading, setIsLoading] = useState(false);
   const disabledBtn = useRef<HTMLButtonElement>(null);
   const [Toast, setToast] = useState(false);
@@ -62,6 +64,7 @@ function Login() {
       }, 9000);
     }
   }
+
   return (
     <>
       <section>

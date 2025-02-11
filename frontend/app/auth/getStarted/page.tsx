@@ -7,7 +7,7 @@ import Step3 from "./Step3";
 import { domain } from "@/app/config/domain";
 import { useRouter } from "next/navigation";
 // import { jwtDecode, JwtPayload } from "jwt-decode";
-// import { decoded } from "@/app/lib/getDecodedToken";
+import { decoded } from "@/app/lib/getDecodedToken";
 import Step4 from "./Step4";
 import { useMyContext } from "@/app/Redux/Store";
 function GetStarted() {
@@ -71,8 +71,8 @@ function GetStarted() {
       setRecords((previnfo) => {
         return {
           ...previnfo,
-          // id: decoded.id,
-          // email: decoded.email,
+          id: decoded && decoded.id,
+          email: decoded && decoded.email,
           title: Inputs.title,
           bio: Inputs.bio,
         };

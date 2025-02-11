@@ -18,6 +18,8 @@ interface MyContextType {
   setProjectLink: React.Dispatch<React.SetStateAction<any[]>>;
   template_one: any[];
   setTemplate_one: React.Dispatch<React.SetStateAction<any[]>>;
+  uniqueDetails: any[];
+  setUniqueDetails: React.Dispatch<React.SetStateAction<any[]>>;
   selectedTemplate: any[];
   setSelectedTemplate: React.Dispatch<React.SetStateAction<any[]>>;
   title: string;
@@ -26,8 +28,6 @@ interface MyContextType {
   setLink: React.Dispatch<React.SetStateAction<string>>;
   linkId: string;
   setLinkId: React.Dispatch<React.SetStateAction<string>>;
-  getBankDetails: any[];
-  setGetBankDetails: React.Dispatch<React.SetStateAction<any[]>>;
 }
 
 // Create the context with a default value
@@ -44,9 +44,9 @@ export const MyContextProvider = ({ children }: { children: ReactNode }) => {
 
   const [linkId, setLinkId] = useState<string>("");
 
-  const [getBankDetails, setGetBankDetails] = useState<any[]>([]);
-
   const [selectedTemplate, setSelectedTemplate] = useState<any[]>([]);
+
+  const [uniqueDetails, setUniqueDetails] = useState<any[]>([]);
 
   const PopUpModel = useRef<HTMLDivElement>(null);
 
@@ -75,8 +75,8 @@ export const MyContextProvider = ({ children }: { children: ReactNode }) => {
         setLink,
         linkId,
         setLinkId,
-        getBankDetails,
-        setGetBankDetails,
+        uniqueDetails,
+        setUniqueDetails,
       }}
     >
       {children}

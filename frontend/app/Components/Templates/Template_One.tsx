@@ -1,28 +1,19 @@
 "use client";
 import { MdContentCopy } from "react-icons/md";
 import { BiDotsVerticalRounded } from "react-icons/bi";
-import { MdOutlineWhatsapp } from "react-icons/md";
-import { TbBrandTiktok } from "react-icons/tb";
-import { AiOutlineYoutube } from "react-icons/ai";
-import { FaInstagram } from "react-icons/fa";
-import { CiFacebook } from "react-icons/ci";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { domain } from "@/app/config/domain";
-import { decoded } from "@/app/lib/getDecodedToken";
+
 import Link from "next/link";
 import { useMyContext } from "@/app/Redux/Store";
 import Button from "../Button";
 import { useRouter } from "next/navigation";
+import { decoded } from "@/app/lib/getDecodedToken";
 
 function Template_One() {
-  const {
-    setProjectLink,
-    projectLink,
-    template_one,
-    setTemplate_one,
-    getBankDetails,
-  } = useMyContext();
+  const { setProjectLink, projectLink, template_one, setTemplate_one } =
+    useMyContext();
 
   // const [template_one, setTemplate_one] = useState([]);
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -30,11 +21,15 @@ function Template_One() {
   const route = useRouter();
 
   async function getTemplate() {
-    const result = await fetch(`${domain}/api/user_template/${decoded.id}`, {
+    if (typeof window === "undefined") return; // Ensure it runs only on the client
+
+    const token = localStorage.getItem("AccessToken");
+    if (!token) return;
+
+    const result = await fetch(`${domain}/api/user_template/${decoded?.id}`, {
       headers: {
         "Content-Type": "application/json",
-        "x-auth-token":
-          localStorage && (localStorage.getItem("AccessToken") as string),
+        "x-auth-token": token,
       },
     });
     try {
@@ -56,7 +51,7 @@ function Template_One() {
 
   useEffect(() => {
     getTemplate();
-  });
+  }, []);
 
   return (
     <>

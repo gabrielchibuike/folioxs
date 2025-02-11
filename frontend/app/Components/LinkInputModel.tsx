@@ -35,14 +35,14 @@ function LinkInputModel({ ele }: { ele: any }) {
   const [token, setToken] = useState<string | null>(null);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      setToken(localStorage.getItem("AccessToken") || "token");
-    }
+    // if (typeof window !== "undefined" && localStorage) {
+    // }
+    setToken(localStorage.getItem("AccessToken"));
   }, []);
 
   async function handleSubmit() {
     const data = {
-      email: decoded.email,
+      email: decoded?.email,
       title,
       link,
       linkId: ele.linkId,

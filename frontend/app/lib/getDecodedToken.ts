@@ -1,17 +1,29 @@
 import { jwtDecode, JwtPayload } from "jwt-decode";
 
-interface newJwtPayLoad extends JwtPayload {
+interface NewJwtPayload extends JwtPayload {
   id: string;
   email: string;
 }
 
-const token =
-  (typeof window !== "undefined" && localStorage.getItem("AccessToken")) ||
-  "token";
-console.log(token);
+// Function to get and decode token safely
+export function getDecodedToken(): NewJwtPayload | null {
+  if (typeof window === "undefined") return null; // Ensure client-side execution
 
-if (!token) {
-  if (typeof window !== "undefined") window.location.href = "/auth/login";
+  const token = localStorage.getItem("AccessToken");
+
+  if (!token) {
+    window.location.href = "/auth/login"; // Redirect if no token
+    return null;
+  }
+
+  try {
+    return jwtDecode<NewJwtPayload>(token);
+  } catch (error) {
+    console.error("Invalid token:", error);
+    window.location.href = "/auth/login"; // Redirect on invalid token
+    return null;
+  }
 }
 
-export const decoded: newJwtPayLoad = jwtDecode(token as string);
+// Usage Example
+export const decoded = getDecodedToken();

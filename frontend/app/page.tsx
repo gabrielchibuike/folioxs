@@ -10,7 +10,7 @@ function Home() {
   const route = useRouter();
   return (
     <>
-      <div className="w-full min-h-screen px-10 surface">
+      <div className="w-full min-h-screen px-10 surface max-lg:px-2">
         <div className="flex justify-between  items-center">
           <div className="flex gap-2 items-center py-3 ">
             <div className="p-1 bg-pink-700 rounded-md flex justify-center items-center">

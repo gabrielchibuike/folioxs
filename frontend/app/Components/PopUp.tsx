@@ -78,7 +78,7 @@ function PopUp() {
         {
           Id: index,
           linkId: uuid,
-          email: decoded.email,
+          email: decoded?.email,
           title: "blog",
           link: "https://blog.com",
           linkImage: "",
